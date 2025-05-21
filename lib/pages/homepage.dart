@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'predios.dart';
-import 'eventos.dart';
-import 'sobre.dart';
-import 'barras_layout.dart';
-import 'explore_mapa.dart';
+import '../pages/predios.dart';
+import '../pages/eventos.dart';
+import '../pages/sobre.dart';
+import '../widgets/barras_layout.dart';
+import '../pages/explore_mapa.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _telas = [
     const ExploreMapa(),
-    Predio(texto: 'Prédios'),
-    Eventos(texto: 'Eventos'),
+    PrediosPage(),
+    const Eventos(),
     const SobreApp(),
   ];
 

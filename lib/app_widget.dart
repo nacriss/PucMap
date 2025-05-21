@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pucmap/homepage.dart';
+import '../pages/homepage.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
