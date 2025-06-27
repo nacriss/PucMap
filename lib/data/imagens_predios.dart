@@ -1,5 +1,3 @@
-// Este arquivo foi gerado automaticamente por gerar_imagens_predios.py
-
 final Map<int, List<String>> imagensPorPredio = {
   1: [
     'assets/image/predios/1/1_1.jpeg',
@@ -11,12 +9,8 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/10/10_1.jpeg',
     'assets/image/predios/10/10_2.jpeg',
   ],
-  11: [
-    'assets/image/predios/11/11_1.jpeg',
-  ],
-  12: [
-    'assets/image/predios/12/12_1.jpg',
-  ],
+  11: ['assets/image/predios/11/11_1.jpeg'],
+  12: ['assets/image/predios/12/12_1.jpg'],
   13: [
     'assets/image/predios/13/13_1.jpeg',
     'assets/image/predios/13/13_2.jpeg',
@@ -68,9 +62,7 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/24/24_1.jpeg',
     'assets/image/predios/24/24_2.jpeg',
   ],
-  25: [
-    'assets/image/predios/25/25_1.jpg',
-  ],
+  25: ['assets/image/predios/25/25_1.jpg'],
   26: [
     'assets/image/predios/26/26_1.jpeg',
     'assets/image/predios/26/26_2.jpeg',
@@ -120,9 +112,7 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/37/37_1.jpeg',
     'assets/image/predios/37/37_2.jpeg',
   ],
-  38: [
-    'assets/image/predios/38/38_1.jpeg',
-  ],
+  38: ['assets/image/predios/38/38_1.jpeg'],
   4: [
     'assets/image/predios/4/4_1.jpeg',
     'assets/image/predios/4/4_2.jpeg',
@@ -130,9 +120,7 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/4/4_4.jpeg',
     'assets/image/predios/4/4_5.jpeg',
   ],
-  41: [
-    'assets/image/predios/41/41_1.jpeg',
-  ],
+  41: ['assets/image/predios/41/41_1.jpeg'],
   42: [
     'assets/image/predios/42/42_1.jpeg',
     'assets/image/predios/42/42_2.jpeg',
@@ -184,9 +172,7 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/54/54_3.jpeg',
     'assets/image/predios/54/54_4.jpeg',
   ],
-  57: [
-    'assets/image/predios/57/57_1.jpeg',
-  ],
+  57: ['assets/image/predios/57/57_1.jpeg'],
   6: [
     'assets/image/predios/6/6-1.jpeg',
     'assets/image/predios/6/6-2.jpg',
@@ -202,25 +188,14 @@ final Map<int, List<String>> imagensPorPredio = {
     'assets/image/predios/61/61_2.jpeg',
     'assets/image/predios/61/61_3.jpeg',
   ],
-  7: [
-    'assets/image/predios/7/7_1.jpeg',
-    'assets/image/predios/7/7_2.jpeg',
-  ],
+  7: ['assets/image/predios/7/7_1.jpeg', 'assets/image/predios/7/7_2.jpeg'],
   8: [
     'assets/image/predios/8/8_1.jpeg',
     'assets/image/predios/8/8_2.jpeg',
     'assets/image/predios/8/8_3.jpeg',
     'assets/image/predios/8/8_4.jpeg',
   ],
-  84: [
-    'assets/image/predios/84/84_1.jpg',
-    'assets/image/predios/84/84_2.jpeg',
-  ],
-  86: [
-    'assets/image/predios/86/86_1.jpeg',
-  ],
-  9: [
-    'assets/image/predios/9/9_1.jpeg',
-    'assets/image/predios/9/9_2.jpeg',
-  ],
+  84: ['assets/image/predios/84/84_1.jpg', 'assets/image/predios/84/84_2.jpeg'],
+  86: ['assets/image/predios/86/86_1.jpeg'],
+  9: ['assets/image/predios/9/9_1.jpeg', 'assets/image/predios/9/9_2.jpeg'],
 };

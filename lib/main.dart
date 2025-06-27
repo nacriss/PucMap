@@ -5,7 +5,8 @@ import 'package:pucmap/utils/database_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
-  await DatabaseHelper.instance.deleteAll();
+
+  // Popula o banco se vazio
   await DatabaseHelper.instance.popularBancoInicial();
   runApp(const AppWidget());
 }

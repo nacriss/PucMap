@@ -3,12 +3,16 @@ class Predio {
   final String nome;
   final String descricao;
   final List<String> imagens;
+  final double latitude;
+  final double longitude;
 
   Predio({
     this.id,
     required this.nome,
     required this.descricao,
     required this.imagens,
+    required this.latitude,
+    required this.longitude,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +23,8 @@ class Predio {
       'imagens': imagens.join(
         ',',
       ), // armazenar como string separada por vírgula
+      'latitude': latitude,
+      'longitude': longitude,
     };
   }
 
@@ -28,6 +34,8 @@ class Predio {
       nome: map['nome'],
       descricao: map['descricao'],
       imagens: map['imagens'].split(','),
+      latitude: (map['latitude'] as num).toDouble(),
+      longitude: (map['longitude'] as num).toDouble(),
     );
   }
   // Gera caminhos para imagens locais com base no ID do prédio e quantidade

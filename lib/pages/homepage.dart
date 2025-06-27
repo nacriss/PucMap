@@ -14,20 +14,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _indiceAtual = 0;
+  final GlobalKey<ExploreMapaState> _exploreKey = GlobalKey<ExploreMapaState>();
 
-  final List<Widget> _telas = [
-    const ExploreMapa(),
-    PrediosPage(),
-    const Eventos(),
-    const SobreApp(),
-  ];
-
-  final List<String> _titulos = [
-    '', // Página inicial (com busca)
-    'Prédios',
-    'Eventos',
-    'Sobre',
-  ];
+  void _onBuscar(String texto) {
+    if (_indiceAtual == 0 && _exploreKey.currentState != null) {
+      _exploreKey.currentState!.buscarPredio(texto);
+    }
+  }
 
   void _onTabTapped(int index) {
     setState(() {
@@ -37,12 +30,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final telas = [
+      ExploreMapa(key: _exploreKey),
+      PrediosPage(),
+      const Eventos(),
+      const SobreApp(),
+    ];
+
+    final titulos = ['', 'Prédios', 'Eventos', 'Sobre'];
+
     return BaseLayout(
-      body: _telas[_indiceAtual],
+      body: telas[_indiceAtual],
       currentIndex: _indiceAtual,
       onTabTapped: _onTabTapped,
       mostrarBusca: _indiceAtual == 0,
-      titulo: _titulos[_indiceAtual],
+      titulo: titulos[_indiceAtual],
+      onBuscar: _onBuscar,
     );
   }
 }

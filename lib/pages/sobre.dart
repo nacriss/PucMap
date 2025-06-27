@@ -35,7 +35,6 @@ class _SobreAppState extends State<SobreApp>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(title: const Text('Sobre nós')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(

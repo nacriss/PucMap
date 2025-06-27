@@ -4,9 +4,9 @@ class BaseLayout extends StatelessWidget {
   final Widget body;
   final int currentIndex;
   final Function(int) onTabTapped;
-  final bool mostrarBusca; // true para barra de busca
-  final String?
-  titulo; // título para AppBar simples (se mostrarBusca for false)
+  final bool mostrarBusca;
+  final String? titulo;
+  final void Function(String)? onBuscar;
 
   const BaseLayout({
     super.key,
@@ -15,10 +15,13 @@ class BaseLayout extends StatelessWidget {
     required this.onTabTapped,
     this.mostrarBusca = false,
     this.titulo,
+    this.onBuscar,
   });
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+
     return Scaffold(
       appBar:
           mostrarBusca
@@ -35,24 +38,47 @@ class BaseLayout extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withAlpha(51),
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Icon(Icons.menu, color: Colors.white),
-                        SizedBox(width: 8),
+                        const Icon(Icons.menu, color: Colors.white),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
+                            controller: controller,
+                            style: const TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
                               hintText: "Buscar...",
                               hintStyle: TextStyle(color: Colors.white70),
                               border: InputBorder.none,
                             ),
+                            onSubmitted: (texto) {
+                              if (onBuscar != null) onBuscar!(texto.trim());
+                            },
                           ),
                         ),
-                        Icon(Icons.search, color: Colors.white),
+                        Material(
+                          color:
+                              Colors.transparent, // para não ter fundo colorido
+                          shape: const CircleBorder(),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(30),
+                            onTap: () {
+                              final texto = controller.text.trim();
+                              if (onBuscar != null && texto.isNotEmpty) {
+                                onBuscar!(texto);
+                              }
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(
+                                8.0,
+                              ), // aumenta a área de toque
+                              child: Icon(Icons.search, color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
