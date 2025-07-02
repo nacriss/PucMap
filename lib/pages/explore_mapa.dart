@@ -69,9 +69,7 @@ class ExploreMapaState extends State<ExploreMapa> {
           if (mounted && context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text(
-                  'Você está fora do campus. Mapa limitado à área do campus.',
-                ),
+                content: Text('Você está fora do campus!'),
                 duration: Duration(seconds: 4),
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Color(0xFF118E8F),
@@ -87,7 +85,7 @@ class ExploreMapaState extends State<ExploreMapa> {
         // Resto da lógica de recalculo de rota
         if (_rota.isNotEmpty && !_recalculando && _destino != null) {
           final estaNaRota = _rota.any(
-            (ponto) => _distance(novaLocalizacao, ponto) <= 5,
+            (ponto) => _distance(novaLocalizacao, ponto) <= 10,
           );
 
           if (!estaNaRota) {
@@ -250,7 +248,7 @@ class ExploreMapaState extends State<ExploreMapa> {
         initialCenter: _localizacaoAtual!,
         initialZoom: 18.0,
         maxZoom: 20,
-        cameraConstraint: CameraConstraint.contain(bounds: limiteArea),
+        //cameraConstraint: CameraConstraint.contain(bounds: limiteArea),
       ),
       children: [
         TileLayer(

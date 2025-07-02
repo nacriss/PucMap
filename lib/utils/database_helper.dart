@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:io';
@@ -68,7 +69,7 @@ class DatabaseHelper {
     final result = await db.query('predios');
 
     if (result.isEmpty) {
-      print(
+      debugPrint(
         "Populating initial database data...",
       ); // Debug: Indica que a população está ocorrendo
       await insertPredio(
@@ -576,9 +577,11 @@ class DatabaseHelper {
           longitude: -43.99151857942062,
         ),
       );
-      print("Database populated successfully."); // Debug: Confirma a população
+      debugPrint(
+        "Database populated successfully.",
+      ); // Debug: Confirma a população
     } else {
-      print(
+      debugPrint(
         "Database already populated, skipping initial insertion.",
       ); // Debug: Indica que a população foi pulada
     }
@@ -612,12 +615,12 @@ class DatabaseHelper {
       (i) => Predio.fromMap(allMaps[i]),
     );
 
-    print(
+    debugPrint(
       "All Predios from DB: ${allPredios.map((p) => p.nome).toList()}",
     ); // Debug: Veja todos os nomes dos prédios
 
     if (texto.isEmpty) {
-      print(
+      debugPrint(
         "Search text is empty, returning empty list.",
       ); // Debug: Texto de busca vazio
       return []; // Retorna lista vazia se o termo de busca estiver vazio
@@ -625,7 +628,7 @@ class DatabaseHelper {
 
     // 2. Normaliza o termo de busca fornecido pelo usuário
     final String termoBuscaNormalizado = _normalizeString(texto.trim());
-    print(
+    debugPrint(
       "Normalized search term: '$termoBuscaNormalizado'",
     ); // Debug: Termo de busca normalizado
 
@@ -633,47 +636,50 @@ class DatabaseHelper {
     int? numeroPredio = int.tryParse(termoBuscaNormalizado);
 
     // 4. Filtra os prédios em Dart (em memória)
-    List<Predio> filteredPredios = allPredios.where((predio) {
-      // Normaliza o nome do prédio do banco de dados para comparação
-      final String predioNomeNormalizado = _normalizeString(predio.nome);
-      print(
-        "  Comparing '${predio.nome}' (normalized: '$predioNomeNormalizado') with '$termoBuscaNormalizado'",
-      ); // Debug: Comparação individual
+    List<Predio> filteredPredios =
+        allPredios.where((predio) {
+          // Normaliza o nome do prédio do banco de dados para comparação
+          final String predioNomeNormalizado = _normalizeString(predio.nome);
+          debugPrint(
+            "  Comparing '${predio.nome}' (normalized: '$predioNomeNormalizado') with '$termoBuscaNormalizado'",
+          ); // Debug: Comparação individual
 
-      // Critério 1: Se o termo de busca é um número e corresponde ao ID
-      if (numeroPredio != null && predio.id == numeroPredio) {
-        print("    Match by ID: ${predio.id}"); // Debug: Match por ID
-        return true;
-      }
+          // Critério 1: Se o termo de busca é um número e corresponde ao ID
+          if (numeroPredio != null && predio.id == numeroPredio) {
+            debugPrint("    Match by ID: ${predio.id}"); // Debug: Match por ID
+            return true;
+          }
 
-      // Critério 2: Se o termo de busca é um número e o nome do prédio
-      // normalizado começa com "predio X" (ex: "predio 1")
-      // Usa startsWith para ser mais preciso com o formato "Prédio X"
-      if (numeroPredio != null &&
-          predioNomeNormalizado.startsWith('predio $numeroPredio')) {
-        print(
-          "    Match by 'predio X' format: ${predio.nome}",
-        ); // Debug: Match por "predio X"
-        return true;
-      }
+          // Critério 2: Se o termo de busca é um número e o nome do prédio
+          // normalizado começa com "predio X" (ex: "predio 1")
+          // Usa startsWith para ser mais preciso com o formato "Prédio X"
+          if (numeroPredio != null &&
+              predioNomeNormalizado.startsWith('predio $numeroPredio')) {
+            debugPrint(
+              "    Match by 'predio X' format: ${predio.nome}",
+            ); // Debug: Match por "predio X"
+            return true;
+          }
 
-      // Critério 3: O nome normalizado do prédio contém o termo de busca normalizado
-      // (ignora maiúsculas/minúsculas e acentos, busca parcial)
-      if (predioNomeNormalizado.contains(termoBuscaNormalizado)) {
-        print(
-          "    Match by partial name: ${predio.nome}",
-        ); // Debug: Match por nome parcial
-        return true;
-      }
+          // Critério 3: O nome normalizado do prédio contém o termo de busca normalizado
+          // (ignora maiúsculas/minúsculas e acentos, busca parcial)
+          if (predioNomeNormalizado.contains(termoBuscaNormalizado)) {
+            debugPrint(
+              "    Match by partial name: ${predio.nome}",
+            ); // Debug: Match por nome parcial
+            return true;
+          }
 
-      return false; // Não houve match
-    }).toList();
+          return false; // Não houve match
+        }).toList();
 
-    print("Filtered Predios found:"); // Debug
+    debugPrint("Filtered Predios found:"); // Debug
     for (var p in filteredPredios) {
-      print("  - ID: ${p.id}, Nome: ${p.nome}"); // Debug: List filtered prédios
+      debugPrint(
+        "  - ID: ${p.id}, Nome: ${p.nome}",
+      ); // Debug: List filtered prédios
     }
-    print(
+    debugPrint(
       "Filtered Predios count: ${filteredPredios.length}",
     ); // Debug: Quantidade de resultados
     return filteredPredios;
