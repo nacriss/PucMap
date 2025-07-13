@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Lib
+/lib/utils/chave_mapbox.dart
+/lib/utils/chave_ors.dart
